@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import TodoItem from "./TodoItem";
-import {TodoWrap} from "./styled";
+import {TodoWrap, TodoStyle, TodoInputWrap} from "./styled";
 import {DefTitle} from "../../assets/title/styled";
 import {DefButton} from "../../assets/button/styled";
 import {DefInput} from "../../assets/input/styled";
 import {InputWrapper} from "../../assets/wrapper/styled";
-import './style.css'
 
 function Todo() {
 
@@ -90,23 +89,23 @@ function Todo() {
                 }
             ]
         );
+
     return (
-        <div className="todo">
-            <DefTitle className="todo__title">Todo лист</DefTitle>
-            <form className="todo__form" onSubmit={addTask}>
-                <div className="todo__enter-wrap">
+        <TodoStyle>
+            <DefTitle>Todo лист</DefTitle>
+            <form onSubmit={addTask}>
+                <TodoInputWrap>
                     <InputWrapper margin={'0 10px 0 0'}>
                         <DefInput
                             type="text"
-                            className="todo__enter"
                             placeholder='Введите запись'
                             onChange ={(event: React.ChangeEvent<HTMLInputElement>)=>setCurrentValue(event.target.value)}
                             value={currentValue}
                         />
                     </InputWrapper>
-                    <DefButton className="todo__btn-submit">Добавить</DefButton>
-                </div>
-                <TodoWrap className="todo__list">
+                    <DefButton>Добавить</DefButton>
+                </TodoInputWrap>
+                <TodoWrap>
                     {
                         todoList.map((item)=>{
                             return <TodoItem
@@ -124,7 +123,7 @@ function Todo() {
                     }
                 </TodoWrap>
             </form>
-        </div>
+        </TodoStyle>
     )
 }
 export default Todo;
